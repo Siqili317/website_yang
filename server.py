@@ -38,14 +38,16 @@ def get_publication():
 
 @app.route("/contact", methods = ["GET", "POST"])
 def get_contact():
+    today = datetime.date.today()
+    year = today.strftime("%Y")
     if request.method == "POST":
         data = request.form
         send_email(data["name"], data["email"], data["subject"], data["message"])
         return f"<h1>Successfully sent your message!</h1><p>Thank you, {request.form['name']}! I will get back to you soon. --Yang"
-    return render_template('contact.html')
+    return render_template('contact.html', current_year = year)
 
 def send_email(name, email, subject, message):
-    email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nPhone: {subject}\nMessage:{message}"
+    email_message = f"Subject:New Message from my website\n\nName: {name}\nEmail: {email}\nPhone: {subject}\nMessage:{message}"
     with smtplib.SMTP("smtp.gmail.com", "587") as connection:
         connection.starttls()
         connection.login(my_email, my_password)
