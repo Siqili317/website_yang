@@ -49,7 +49,7 @@ def send_email(name, email, subject, message):
     with smtplib.SMTP("smtp.gmail.com", "587") as connection:
         connection.starttls()
         connection.login(my_email, my_password)
-        connection.sendmail(from_addr= my_email, to_addrs= "siqili317@gmail.com", msg = email_message)
+        connection.sendmail(from_addr= my_email, to_addrs= "yangy48@gmail.com", msg = email_message)
 
 if __name__ == "__main__":
     app.run(debug=True)
